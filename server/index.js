@@ -12,7 +12,7 @@ massive(CONNECTION_STRING).then(db => { // SET THE DB, STARTS THE SERVER
 })
 app.use(express.json());
 app.use(session({ // SESSION CREATOR
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     secret: SESSION_SECRET,
     cookie: {

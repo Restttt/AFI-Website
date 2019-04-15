@@ -34,9 +34,7 @@ module.exports = {
                 res.status(403).send('Incorrect password.');
             } else {
                 delete checkUser[0].customer_hash;
-
                 req.session.user = checkUser[0];
-                console.log(checkUser[0]);
                 res.status(200).send(req.session.user);
             };
         };       

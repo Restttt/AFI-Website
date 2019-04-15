@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700");
+
+:root {
+    --color1: #404040;
+    --color2: #142158;
+    --color3: #70AED1;
+    --color4: #F2F2F2;
+    --color5: #FFFFFF;
+    --color6: #03121B;
+    --color1-opac: #404040ab;
+
+    --test1: #0D1B2A;
+    --test2: #1B263B;
+    --test3: #415A77;
+    --test4: #778DA9;
+    --test5: #E0E1DD;
+
+    --carBackground: url('./images/AFI-Home-Pic1.jpg');
+    --storeFront: url('./images/Store-Front.PNG');
+    --afiStaff: url('./images/AFI-Staff.jpg');
+    --saltLake: url('./images/Salt Lake Valley.jpg');
+}
+
+* {
+  margin: 0;
+  font-family: 'Work Sans', sans-serif;
+}
