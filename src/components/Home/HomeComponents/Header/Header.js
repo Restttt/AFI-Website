@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter, Link } from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import './Header.scss';
 
@@ -10,7 +11,8 @@ class Header extends Component {
 
         this.state = {
             navActive: false,
-            isTop: true
+            isTop: true,
+            loggedIn: this.props.user.email
         };
     };
 
@@ -40,10 +42,10 @@ class Header extends Component {
                                 <span id="nav-menu-toggle" onClick={() => this.setState({ navActive: false })}>&#8801;</span>
                                 <div className="list-items">
                                     <div className="list-items-box">
-                                        <Link className="link" to='/'><li>HOME</li></Link>
-                                        <Link className="link" to='/store'><li>STORE</li></Link>
-                                        <Link className="link" to='/login'><li>LOGIN</li></Link>
-                                        <Link className="link" to='/cart'><li>CART</li></Link>
+                                        <Link className="link" to='/'><h4 className="link">HOME</h4></Link>
+                                        <Link className="link" to='/store'><h4 className="link">STORE</h4></Link>
+                                        {this.state.loggedIn === null ? (<Link className="link" to='/login'><h4 className="link">LOGIN</h4></Link>) : (<Link className="link" to='/account'><h4 className="link">ACCOUNT</h4></Link>)}
+                                        <Link className="link" to='/cart'><h4 className="link">CART</h4></Link>
                                     </div>
                                 </div>
                             </ul>) : (
@@ -56,7 +58,7 @@ class Header extends Component {
                         <div className="list-items-min600">
                             <Link className="link" to='/'><span>HOME</span></Link>
                             <Link className="link" to='/store'><span>STORE</span></Link>
-                            <Link className="link" to='/login'><span>LOGIN</span></Link>
+                            {this.state.loggedIn === null ? (<Link className="link" to='/login'>LOGIN</Link>) : (<Link className="link" to='/account'>ACCOUNT</Link>)}
                             <Link className="link" to='/cart'><span>CART</span></Link>
                         </div>
                     </nav>
@@ -74,4 +76,10 @@ class Header extends Component {
     };
 };
 
-export default Header;
+function mapStateToRedux(reduxStore) {
+    return {
+        user: reduxStore.user
+    }
+}
+
+export default connect(mapStateToRedux)(Header);

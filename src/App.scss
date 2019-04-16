@@ -8,6 +8,7 @@
     --color5: #FFFFFF;
     --color6: #03121B;
     --color1-opac: #404040ab;
+    --color1-opac2: hsla(0, 0%, 25%, 0.87);
 
     --test1: #0D1B2A;
     --test2: #1B263B;
@@ -19,6 +20,12 @@
     --storeFront: url('./images/Store-Front.PNG');
     --afiStaff: url('./images/AFI-Staff.jpg');
     --saltLake: url('./images/Salt Lake Valley.jpg');
+
+    --paintCloud: url('./images/paint-cloud.jpeg');
+    --testBackground: url('./images/new-car-background.jpg');
+    --testBackground2: url('./images/new-car.jpg');
+    --colorSelector: url('./images/color-selector.jpeg');
+    --sprayCan: url('./images/spray-can.jpg');
 }
 
 * {

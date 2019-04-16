@@ -5,12 +5,12 @@ const initialState = {
     name: null,
     company: null,
     admin: false,
-    loading: false,
     message: null
-}
+};
 
 // ACTION TYPES //
-const LOGIN = "LOGIN"
+const LOGIN = "LOGIN";
+const REGISTER = "REGISTER";
 
 
 // ACTION CREATORS //
@@ -24,21 +24,42 @@ export function loginUser(loginInfo) {
     };
 };
 
+export function registerUser(registerInfo) {
+    let register = axios.post('/auth/register', registerInfo).then(res => {
+        return res.data;
+    });
+    return {
+        type: REGISTER,
+        payload: register
+    };
+};
+
 
 // REDUCER //
 export default function reducer(state = initialState, action) {
     switch(action.type) {
         case LOGIN + "_PENDING": {
-            return {...state, loading: true}
+            return {...state}
         }
         case LOGIN + "_FULFILLED": {
-            return {...state, loading: false, email: action.payload.email, name: action.payload.customer_name, admin: action.payload.is_admin, company: action.payload.company}
+            return {...state, email: action.payload.email, name: action.payload.customer_name, admin: action.payload.is_admin, company: action.payload.company}
         }
         case LOGIN + "_REJECTED": {
-            return {...state, loading: false, message: action.payload}
+            alert(action.payload.response.data);
+            return {...state, message: action.payload}
+        }
+        case REGISTER + "_PENDING": {
+            return {...state}
+        }
+        case REGISTER + "_FULFILLED": {
+            return {...state, email: action.payload.email, name: action.payload.customer_name, admin: action.payload.is_admin, company: action.payload.company}
+        }
+        case REGISTER + "_REJECTED": {
+            alert(action.payload.response.data);
+            return {...state, message: action.payload}
         }
         default: {
             return state;
-        };
+        }
     };
 };

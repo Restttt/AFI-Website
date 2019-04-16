@@ -1,11 +1,6 @@
 .header-parent-box {
     width: 100%;
 }
-
-li {
-    list-style-type: none;
-    margin-left: 15px;
-}
 .nav-bar-parent-box {
     width: 100%;
 
@@ -62,9 +57,18 @@ li {
 .header-home-intro-parent {
     width: 100%;
     height: 400px;
-    background-image: var(--carBackground);
+    background-image: var(--testBackground2);
     background-size: cover;
     background-position: right center;
+}
+
+.list-items-box {
+    display: flex;
+    flex-direction: column;
+}
+.link h4 {
+    margin-left: 15px;
+    font-weight: 500;
 }
 
 .link:link, .link:visited {
@@ -101,7 +105,7 @@ li {
 }
 
 @media(min-width: 400px) {
-    li {
+    .link h4 {
         margin-left: 21px;
     }
     .scrolling-nav-bar .afi-name {
@@ -113,7 +117,7 @@ li {
 }
 
 @media(min-width: 500px) {
-    li {
+    .link h4 {
         margin-left: 26px;
     }
     .scrolling-nav-bar .afi-name {
@@ -125,7 +129,7 @@ li {
 }
 
 @media(min-width: 650px) {
-    li {
+    .link h4 {
         margin-left: 31px;
     }
     .nav-bar-box {
@@ -177,7 +181,7 @@ li {
         align-items: flex-start;
     }
     .header-parent-box {
-        background-image: var(--carBackground);
+        background-image: var(--testBackground2);
         background-size: cover;
         background-position: right center;
         height: 600px;

@@ -38,6 +38,8 @@ app.delete('/auth/logout'); // DELETE SESSION
 
 // STORE //
 app.get('/api/store/getAll', storeCtrl.getAll); // GET ALL PRODUCTS 
+app.post('/api/store/product', storeCtrl.getByID); //GET PRODUCT BY ID
+app.post('/api/store/getByCategory', storeCtrl.getByCategory);
 // END STORE //
 
 

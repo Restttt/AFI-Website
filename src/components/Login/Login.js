@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
 import { HashRouter, Link } from 'react-router-dom';
 
+// Components and style
 import Header from '../shared/Header/Header';
+import Footer from '../shared/Footer/Footer';
 import './Login.scss';
+
+// Redux
+import {loginUser} from '../../redux/ducks/userReducer';
+import {connect} from 'react-redux';
 
 class Login extends Component {
     constructor(props){
@@ -19,13 +25,18 @@ class Login extends Component {
         this.setState({ [name]: value });
     }
 
-    sendMessage = () => {
+    attemptLogin = async () => {
         const login = {
             email: this.state.email,
             password: this.state.password
         };
-        console.log(login);
+        await this.props.loginUser(login)
+        if (this.props.userInfo.email) {
+            const {history} = this.props
+            history.push('/');
+        } 
     };
+
     render() {
         return(
             <HashRouter>
@@ -33,22 +44,29 @@ class Login extends Component {
                 <Header />
                 <div className="login-page-parent">
                     <div className="login-inputs-box">
-                        <h1>LOG IN TO AFI</h1>
+                        <h1>LOGIN TO AFI</h1>
                         <div className="login-inputs-container">
                             <input placeholder="email" type="text" name="email" value={this.state.email} className="login-email" onChange={this.updateEvent}></input>
                             <input placeholder="password" type="password" name="password" value={this.state.password} className="login-password" onChange={this.updateEvent}></input>
                         </div>
                         <h5>Forgot your password?</h5>
                         <div className="login-buttons">
-                            <button>Login</button>
-                            <Link className="link" to='/register'><button>Register</button></Link>
+                            <button onClick={() => this.attemptLogin()}>LOG IN</button>
+                            <Link className="link" to='/register'><button>REGISTER</button></Link>
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
             </HashRouter>
         );
     };
 };
 
-export default Login
+function mapStateToProps(reduxState) {
+    return {
+        userInfo: reduxState.user
+    };
+};
+
+export default connect(mapStateToProps, {loginUser})(Login)

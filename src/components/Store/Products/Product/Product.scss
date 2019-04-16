@@ -1,0 +1,71 @@
+.individual-parent {
+    height: 130vh;
+    width: 100%;
+
+    background: var(--paintCloud);
+    background-size: cover;
+    background-position: right center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.individual-product-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    text-align: center;
+    width: 95%;
+    background: var(--color1-opac);
+    color: white;
+    border-radius: 15px;
+    margin: 0 auto;
+}
+
+.individual-image-box {
+    width: 275px;
+    padding: 15px;
+}
+
+.indivudal-image {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.individual-parent h3 {
+    margin-bottom: 8px;
+}
+
+.individual-product-box span {
+    padding: 10px;
+    border-bottom: 1px solid var(--color3);
+}
+
+.individual-add-cart {
+    padding: 20px;
+    width: 90%;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.individual-add-cart input {
+    width: 60px;
+}
+
+.back-button {
+    position: relative;
+    top: 15px;
+    left: 15px;
+}
+
+.individual-parent button {
+    height: 40px;
+    border-radius: 5px;
+    color: white;
+    border: 2px solid var(--color3);
+    background: var(--color1);
+}

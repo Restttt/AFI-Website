@@ -1,252 +1,83 @@
-.header-parent-box {
-    width: 100%;
-}
-
-li {
-    list-style-type: none;
-    margin-left: 15px;
-}
-.nav-bar-parent-box {
-    width: 100%;
-
-    background: var(--color1);
-    color: var(--color5);
-}
-.nav-bar-box {
-    height: 40px;
-    width: 90%;
-    margin: 0 auto;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.scrolling-nav-bar {
-    width: 100%;
-    position: fixed;
-    background: var(--color1);
-}
-
-.scrolling-nav-bar .afi-name{
-    margin-left: 15px;
-}
-
-.scrolling-nav-bar .nav-bar-options {
-    margin-right: 15px;
-}
-
-.afi-name {
-    font-size: 16px;
-    font-weight: 700;
-}
-
-#nav-menu-toggle {
-    font-size: 30px;
-}
-
-.list-items {
-    position: absolute;
-    top: 40px;
-    left: 0px;
-
-    display: flex;
-    flex-direction: column;
-    background: var(--color1-opac);
-    width: 100%;
-    line-height: 30px;
-
-    border-top: 1px solid var(--color3);
-}
-
-.header-home-intro-parent {
-    width: 100%;
-    height: 400px;
-    background-image: var(--carBackground);
+.login-page-parent {
+    background: var(--colorSelector);
     background-size: cover;
-    background-position: right center;
-}
+    background-position: center;
+    height: 95vh;
+    width: 100vw;
 
-.link:link, .link:visited {
-   color: var(--color5);
-   text-decoration: none;
-}
-
-.list-items-min600 {
-    display: none;
-    font-size: 16px;
-}
-
-.header-home-intro-parent {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.header-home-welcome-parent {
-    width: 100%;
-    margin: 0 auto;
+.login-inputs-box {
+    background: var(--color1-opac2);
+    border-radius: 15px;
 
-    background: var(--color1-opac);
-    padding: 10px;
+    width: 320px;
+    height: 200px;
 
     display: flex;
     flex-direction: column;
-    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+
+    color: white;
 }
 
-.header-home-welcome {
-    font-size: 40px;
-    color: var(--color5)
+.login-inputs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 75px;
 }
 
-@media(min-width: 400px) {
-    li {
-        margin-left: 21px;
-    }
-    .scrolling-nav-bar .afi-name {
-        margin-left: 21px;
-    }
-    .scrolling-nav-bar #nav-menu-toggle {
-        margin-right: 11px;
-    }
+.login-inputs-container input {
+    width: 250px;
+    border-radius: 5px;
+    text-indent: 10px;
+    border: 2px solid var(--color3); 
 }
 
-@media(min-width: 500px) {
-    li {
-        margin-left: 26px;
-    }
-    .scrolling-nav-bar .afi-name {
-        margin-left: 26px;
-    }
-    .scrolling-nav-bar #nav-menu-toggle {
-        margin-right: 16px;
-    }
+.login-buttons {
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 15px;
 }
 
-@media(min-width: 650px) {
-    li {
-        margin-left: 31px;
-    }
-    .nav-bar-box {
-        height: 44px;
-    }
-    .afi-name {
-        font-size: 18px;
-    }
-    #nav-menu-toggle {
-        font-size: 40px;
-    }
-    .header-home-intro-parent {
-        height: 600px;
-    }
-    .list-items {
-        top: 44px;
-        line-height: 40px;
-        font-size: 20px;
-    }
-    .header-home-welcome {
-        font-size: 50px;
-        line-height: 80px;
-    }
-    .header-home-prompt {
-        font-size: 20px;
-    }
-    .scrolling-nav-bar .afi-name {
-        margin-left: 31px;
-    }
-    .scrolling-nav-bar #nav-menu-toggle {
-        margin-right: 22px;
-    }
-}
-
-@media(min-width: 736px) {
-    .list-items-min600 {
-        display: flex;
-        justify-content: space-between;
-        width: 40%;
-    }
-    .nav-bar-options {
-        display: none;
-    }
-    .header-home-intro-parent {
-        background: none;
-    }
-    .nav-bar-parent-box {
-        background: none;
-        align-items: flex-start;
-    }
-    .header-parent-box {
-        background-image: var(--carBackground);
-        background-size: cover;
-        background-position: right center;
-        height: 600px;
-        border-bottom: none;
-    }
-    .afi-name {
-        font-size: 20px;
-    }
-    .nav-bar-box {
-        height: 50px;
-    }
-    .header-home-welcome-parent {
-        margin-bottom: 200px;
-    }
-    .scrolling-nav-bar .list-items-min600 {
-        margin-right: 40px;
-    }
-    .scrolling-nav-bar {
-        height: 50px;
-    }
+.login-buttons button {
+    border-radius: 5px;
+    color: white;
+    border: 2px solid var(--color3);
+    background: var(--color1);
 }
 
 @media(min-width:980px) {
-    .header-parent-box {
-        height: 550px;
+    .login-inputs-box {
+        width: 425px;
+        height: 350px;
     }
-    .nav-bar-box {
-        height: 90px;
+    .login-inputs-box h1 {
+        margin-top: 5vh;
+        font-size: 38px;
     }
-    .afi-name {
-        font-size: 25px;
+    .login-inputs-container {
+        height: 120px;
     }
-    .list-items-min600 {
-        font-size: 20px;
+    .login-inputs-container input {
+        width: 250px;
+        height: 25px;
     }
-    .scrolling-nav-bar {
-        height: 50px;
+    .login-inputs-box h5 {
+        margin-bottom: 3vh;
     }
-}
-@media(min-width:1690px) {
-    .header-parent-box {
-        height: 1000px;
+    .login-buttons {
+        margin-bottom: 3vh;
+        width: 275px;
     }
-    .afi-name {
-        font-size: 45px;
-    }
-    .header-home-welcome-parent {
-        margin-top: 100px;
-    }
-    .nav-bar-box {
-        height: 200px;
-    }
-    .list-items-min600 {
-        font-size: 25px;
-    }
-    .header-home-welcome {
-        font-size: 60px;
-    }
-    .header-home-prompt {
-        font-size: 24px;
-    }
-    .scrolling-nav-bar {
-        height: 50px;
-    }
-    .scrolling-nav-bar .afi-name {
-        margin-left: 100px;
-        font-size: 30px;
-    }
-    .scrolling-nav-bar .list-items-min600 {
-        margin-right: 100px;
+    .login-buttons button {
+        width: 100px;
+        height: 30px;
     }
 }

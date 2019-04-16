@@ -4,7 +4,6 @@ module.exports = {
     register: async (req, res) => {
         const db = req.app.get('db');
         const { email, password, name, company } = req.body;
-        console.log(email, password, name, company);
 
         const checkUser = await db.getUserByEmail(email);
 
@@ -17,7 +16,11 @@ module.exports = {
             if (!createUser[0]) {
                 res.status(409).send('Failed to create account. Please make sure all forms are filled correctly');
             } else {
-                res.status(200).send('Created an account. Please login');
+                const {address1, address2, city, state, zipcode} = req.body;
+                await db.registerAddress(address1, address2, city, state, zipcode, createUser[0].customerid);
+                delete createUser[0].customer_hash;
+                req.session.user = createUser[0];
+                res.status(200).send(req.session.user);
             };
         };
     },

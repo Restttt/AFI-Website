@@ -1,0 +1,22 @@
+.top-bar-store {
+    height: 300px;
+    width: 100%;
+    background: var(--testBackground2);
+    background-size: cover;
+    background-position: left center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: 2px solid var(--color3);
+}
+
+.top-bar-container {
+    width: 100%;
+
+    text-align: center;
+    background: var(--color1-opac);
+    color: white;
+    padding: 15px;
+}
