@@ -45,5 +45,26 @@ module.exports = {
     logout: async (req, res) => {
         await req.session.destroy();
         return res.sendStatus(200);
+    },
+    getAccount: (req, res) => {
+        if (req.session.user) {
+            res.status(200).send(req.session.user);
+        } else {
+            res.sendStatus(200);
+        }
+    },
+    getAccountAndAddress: async (req, res) => {
+        const { email } = req.body;
+        const db = req.app.get('db');
+        const getAddress = await db.getAddressAndCustomer(email);
+        console.log(getAddress[0]);
+        if (!getAddress[0]) {
+            res.status(401).send('unable to pull account info');
+        } else {
+            delete getAddress[0].customer_hash;
+            delete getAddress[0].addressid;
+            delete getAddress[0].customerid;
+            res.status(200).send(getAddress[0]);
+        }
     }
 };

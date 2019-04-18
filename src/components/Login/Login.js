@@ -33,7 +33,7 @@ class Login extends Component {
         await this.props.loginUser(login)
         if (this.props.userInfo.email) {
             const {history} = this.props
-            history.push('/');
+            history.push('/store');
         } 
     };
 

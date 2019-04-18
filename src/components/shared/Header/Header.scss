@@ -10,7 +10,7 @@
 }
 .nav-bar-box {
     height: 40px;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
 
     display: flex;
@@ -26,13 +26,19 @@
 }
 
 .scrolling-nav-bar2 .afi-name{
-    margin-left: 15px;
+    margin-left: 0px;
 }
 
+.nav-bar-options {
+    margin-right: 15px;
+}
 .scrolling-nav-bar2 .nav-bar-options {
     margin-right: 15px;
 }
 
+.AFI-title {
+    margin-left: 15px;
+}
 .afi-name {
     font-size: 16px;
     font-weight: 700;
@@ -63,14 +69,11 @@
     background-size: cover;
     background-position: center;
 }
-
 .list-items-box {
     display: flex;
     flex-direction: column;
 }
-.link {
-    margin-left: 15px;
-}
+
 .link:link, .link:visited {
    color: var(--color5);
    text-decoration: none;
@@ -79,6 +82,7 @@
 .list-items-min600 {
     display: none;
     font-size: 16px;
+    margin-right: 45px;
 }
 
 .header-home-intro-parent {
@@ -99,29 +103,30 @@
     text-align: center;
 }
 
+.scrolling-nav-bar .AFI-title {
+    margin-left: 0px;
+}
+
 .header-home-welcome {
     font-size: 40px;
     color: var(--color5)
 }
 
 @media(min-width: 400px) {
-    .link {
-        margin-left: 21px;
-    }
-    .scrolling-nav-bar2 .afi-name {
-        margin-left: 21px;
+    .scrolling-nav-bar .AFI-title {
+        margin-left: -5px;
     }
     .scrolling-nav-bar2 #nav-menu-toggle {
         margin-right: 11px;
     }
 }
 
-@media(min-width: 500px) {
-    .link {
-        margin-left: 26px;
+@media(min-width: 500px) { 
+    .scrolling-nav-bar .AFI-title {
+        margin-left: -10px;
     }
-    .scrolling-nav-bar2 .afi-name {
-        margin-left: 26px;
+    .nav-bar-link {
+        margin-left: -10px;
     }
     .scrolling-nav-bar2 #nav-menu-toggle {
         margin-right: 16px;
@@ -129,8 +134,8 @@
 }
 
 @media(min-width: 650px) {
-    .link {
-        margin-left: 31px;
+    .nav-bar-link {
+        margin-left: -15px;
     }
     .nav-bar-box {
         height: 44px;
@@ -155,9 +160,6 @@
     }
     .header-home-prompt {
         font-size: 20px;
-    }
-    .scrolling-nav-bar2 .afi-name {
-        margin-left: 31px;
     }
     .scrolling-nav-bar2 #nav-menu-toggle {
         margin-right: 22px;

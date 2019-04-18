@@ -9,6 +9,8 @@ import Cart from './components/Cart/Cart';
 import Store from './components/Store/Store';
 import Register from './components/Login/Register/Register';
 import Product from './components/Store/Products/Product/Product';
+import Account from './components/Account/Account';
+import Dashboard from './components/Admin/DashBoard/AdminDash';
 
 
 // APP //
@@ -24,6 +26,8 @@ class App extends Component {
           <Route path="/store" component={Store} />
           <Route path="/register" component={Register} />
           <Route path="/products/:id" component={Product} />
+          <Route path="/account" component={Account} />
+          <Route path="/admin/dashboard" component={Dashboard} />
         </Switch>
       </div>
       </HashRouter>

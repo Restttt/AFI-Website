@@ -30,15 +30,15 @@ class Products extends Component {
                     category: category
                 };
                 this.props.getByCategory(category);
-            }
-        }
-    }
+            };
+        };
+    };
 
     render() {
         const products = this.props.store.products.map(product => {
             return(
-                <Link to={`/products/${product.productid}`} className="link">
-                <div className="product-container l" key={product.productid}>
+                <Link to={`/products/${product.productid}`} className="link" key={product.productid}>
+                <div className="product-container l">
                     <figure className="product-image-box l">
                         <img className="product-image l" src={product.p_image} alt="product" />
                     </figure>

@@ -1,0 +1,49 @@
+.account-parent-container {
+    min-height: 89vh;
+    width: 100%;
+}
+
+.account-welcome {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.account-user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 300px;
+
+    font-size: 12px;
+}
+
+.account-user-info h3 {
+    font-size: 30px;
+}
+
+
+.account-container {
+    margin-top: 20px;
+    padding: 10px 2px;
+    display: flex;
+    width: 290px;
+    background: var(--color4);
+}
+
+.account-title {
+    width: 50%;
+}
+
+.account-data {
+    display: flex;
+    flex-wrap: wrap;
+    width: 150px;
+}
+
+.account-info-test {
+    display: flex;
+    flex-direction: column;
+
+}

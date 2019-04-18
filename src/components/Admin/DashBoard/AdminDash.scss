@@ -1,0 +1,31 @@
+.chart-container {
+    display: none;
+}
+
+.chart {
+    width: 500px;
+    height: 500px;
+}
+
+.orders-container {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.order-information {
+    background: var(--color4);
+    margin: 20px;
+}
+
+.order-products {
+    
+}
+
+@media(min-width: 980px) {
+    .chart-container {
+        display: block;
+    }
+    .device-to-small {
+        display: none;
+    }
+}

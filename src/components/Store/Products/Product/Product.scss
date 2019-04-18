@@ -11,6 +11,11 @@
     justify-content: center;
 }
 
+.product-display-container {
+    width: 290px;
+    margin: 0 auto;
+}
+
 .individual-product-box {
     display: flex;
     justify-content: center;
@@ -18,7 +23,7 @@
     flex-direction: column;
     
     text-align: center;
-    width: 95%;
+    width: 100%;
     background: var(--color1-opac);
     color: white;
     border-radius: 15px;
@@ -53,13 +58,12 @@
 }
 
 .individual-add-cart input {
+    max-height: 25px;
     width: 60px;
 }
 
 .back-button {
-    position: relative;
-    top: 15px;
-    left: 15px;
+    margin-top: 15px;
 }
 
 .individual-parent button {
@@ -68,4 +72,19 @@
     color: white;
     border: 2px solid var(--color3);
     background: var(--color1);
+}
+
+@media(min-width: 650px) {
+    .product-display-container {
+        width: 500px;
+    }
+    .individual-add-cart {
+        width: 50%;
+    }
+}
+
+@media(min-width: 1500px) {
+    .individual-add-cart input {
+        width: 80px;
+    }
 }
