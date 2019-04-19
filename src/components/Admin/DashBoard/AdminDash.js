@@ -4,13 +4,14 @@ import axios from 'axios';
 import './AdminDash.scss';
 import Header from '../Header/AdminHeader';
 import makeChart from './Chartjs/Chart';
-import Order from './Order/Order';
+import Products from './Order/Products';
 
 class Dashboard extends Component {
     constructor() {
         super();
 
         this.state = {
+            search: '',
             orders: [],
             chartType: 'line',
             chartData: {
@@ -44,8 +45,8 @@ class Dashboard extends Component {
                     }
                 ]
             },
-        }
-    }
+        };
+    };
 
     getAllOrders() {
         axios.get('/admin/getOrders').then(res => {
@@ -55,18 +56,38 @@ class Dashboard extends Component {
     
     componentDidMount() {
         this.getAllOrders();
-    }
+    };
+
+    filterSearch = () => {
+        let orderCopy = this.state.orders;
+        let keyWord = this.state.search;
+        if (keyWord) {
+            orderCopy = orderCopy.filter(order => {
+                return (order.orderid === +keyWord || order.name.toLowerCase().includes(keyWord.toLowerCase()))
+            })
+            return orderCopy;
+        } else {
+            return orderCopy
+        }
+    };
+
+    changeSearch = async (e) => {
+        console.log(e.target.value);
+        await this.setState({ search: e.target.value});
+    };
 
     render() {
         const orders = () => {
             if (this.state.orders.length) {
-                return this.state.orders.map((order, index) => {
+                return this.filterSearch().map((order, index) => {
                     return(
-                        <div className="order-information"key={order.orderID}>
-                            <h3>{order.orderid}</h3>
-                            <h3>{order.name}</h3>
-                            <h3>{order.total}</h3>
-                            <Order 
+                        <div className="order-information" key={index}>
+                            <div className="order-key-information">
+                                <h3>ORDER ID: {order.orderid}</h3>
+                                <h3>Company: {order.name}</h3>
+                                <h3>TOTAL: ${order.total}</h3>
+                            </div>
+                            <Products 
                             index={index}
                             orders={this.state.orders}/>
 
@@ -75,18 +96,23 @@ class Dashboard extends Component {
                 });
             } else {
                 return null;
-            }
-        }
-        console.log(this.state.orders);
+            };
+        };
         return(
             <div>
                 <Header />
                 <h5 className="device-to-small">*Please access this website on a computer for full admin functionality</h5>
-                <div className="chart-container">
-                    {makeChart(this.state.chartType, this.state.chartData)}
-                </div>
-                <div className="orders-container">
-                    {orders()}
+                <div className="admin-dashboard-container">
+                    <div className="orders-container">
+                        <span>
+                            <h2>Orders:</h2>  
+                            <input name="search" onChange={(e) => this.changeSearch(e)}className="admin-search-orders" placeholder='search by company or orderID'/>
+                        </span>
+                        {orders()}
+                    </div>
+                    <div className="chart-container">
+                        {makeChart(this.state.chartType, this.state.chartData)}
+                    </div>
                 </div>
             </div>
         );
