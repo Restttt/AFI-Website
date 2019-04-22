@@ -1,0 +1,29 @@
+.inventory-display-container {
+    width: 80%;
+    margin: 1.25rem auto;
+}
+
+.check-inventory-title {
+    margin: .6rem 0;
+}
+
+.inventory-search {
+    margin: 0 auto;
+    width: 300px;
+}
+
+.inventory-product-container {
+    padding: .45rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background: var(--color4);
+}
+
+.inventory-product-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}

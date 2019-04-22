@@ -3,8 +3,10 @@ import axios from 'axios';
 
 import './AdminDash.scss';
 import Header from '../Header/AdminHeader';
-import makeChart from './Chartjs/Chart';
 import Products from './Order/Products';
+import ChartContainer from './Chartjs/ChartContainer'
+import Inventory from './Inventory/Inventory';
+import Footer from '../../shared/Footer/Footer';
 
 class Dashboard extends Component {
     constructor() {
@@ -13,38 +15,6 @@ class Dashboard extends Component {
         this.state = {
             search: '',
             orders: [],
-            chartType: 'line',
-            chartData: {
-                labels: ['Boston', 'Worcester', 'Springfield', 'Lowell'],
-                datasets: [
-                    {
-                        label:'Population',
-                        data: [
-                            616753,
-                            314134,
-                            123462,
-                            13140
-                        ],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }
-                ]
-            },
         };
     };
 
@@ -69,11 +39,6 @@ class Dashboard extends Component {
         } else {
             return orderCopy
         }
-    };
-
-    changeSearch = async (e) => {
-        console.log(e.target.value);
-        await this.setState({ search: e.target.value});
     };
 
     render() {
@@ -101,19 +66,25 @@ class Dashboard extends Component {
         return(
             <div>
                 <Header />
-                <h5 className="device-to-small">*Please access this website on a computer for full admin functionality</h5>
+                <h5 className="device-to-small">*Please go on a desktop with a min-width of 980px for more admin functionality</h5>
                 <div className="admin-dashboard-container">
                     <div className="orders-container">
                         <span>
-                            <h2>Orders:</h2>  
-                            <input name="search" onChange={(e) => this.changeSearch(e)}className="admin-search-orders" placeholder='search by company or orderID'/>
+                            <h2>Orders</h2>  
+                            <input name="search" onChange={(e) => this.setState({ search: e.target.value})}className="admin-search-orders" placeholder='search by company or orderID'/>
                         </span>
                         {orders()}
                     </div>
-                    <div className="chart-container">
-                        {makeChart(this.state.chartType, this.state.chartData)}
+                    <div className="right-side-admin-container">
+                        <div className="chart-container">
+                            <ChartContainer />
+                        </div>
+                        <div className="inventory-container">
+                            <Inventory />
+                        </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         );
     };

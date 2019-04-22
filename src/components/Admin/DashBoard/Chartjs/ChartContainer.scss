@@ -1,0 +1,15 @@
+.chartContainer-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background: var(--color4)
+}
+
+.change-chart-type-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color4);
+    border-top: .1px solid var(--color5);
+}

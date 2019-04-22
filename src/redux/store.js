@@ -6,13 +6,15 @@ import thunk from 'redux-thunk'
 import userReducer from './ducks/userReducer';
 import storeReducer from './ducks/storeReducer';
 import shoppingReducer from './ducks/shoppingReducer';
+import chartReducer from './ducks/chartReducer';
 
 
 // ROOT REDUCER //
 const rootReducer = combineReducers({
     user: userReducer,
     store: storeReducer,
-    cart: shoppingReducer
+    cart: shoppingReducer,
+    chart: chartReducer
 })
 
 // STORE // 

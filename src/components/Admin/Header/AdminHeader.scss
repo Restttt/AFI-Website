@@ -1,0 +1,29 @@
+.admin-header {
+    width: 100%;
+    height: 50px;
+    background: var(--color1);
+    color: white;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media(max-width: 980px) {
+    .admin-header{
+        font-size: 12px;
+    }
+}
+
+@media(max-width: 650px) {
+    .admin-header{
+        font-size: 8px;
+    }
+}
+
+@media(max-width: 400px) {
+    .admin-header{
+        font-size: 6px;
+        height: 30px;
+    }
+}

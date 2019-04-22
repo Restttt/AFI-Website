@@ -57,7 +57,6 @@ module.exports = {
         const { email } = req.body;
         const db = req.app.get('db');
         const getAddress = await db.getAddressAndCustomer(email);
-        console.log(getAddress[0]);
         if (!getAddress[0]) {
             res.status(401).send('unable to pull account info');
         } else {

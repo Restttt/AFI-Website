@@ -39,6 +39,7 @@ CREATE TABLE product (
     price int   NOT NULL,
     stock int   NOT NULL,
     p_description varchar(1000) NOT NULL
+    display BOOLEAN,
 );
 
 ALTER TABLE customer_address 
@@ -56,13 +57,17 @@ add constraint fk_product Foreign key (productID) references product (productID)
 ALTER TABLE customer ALTER COLUMN is_admin
 SET DEFAULT false;
 
+ALTER TABLE product ALTER COLUMN display
+SET DEFAULT true;
+
 
 INSERT INTO product (p_image, p_name, price, stock, p_description, category) 
 values 
 ('https://s3.us-east-2.amazonaws.com/afi-website-product-images/SM+Color+Coat.jpg', 'SEM COLOR COAT SPRAY CAN', 15, 10, 'SEM COLOR COAT is formulated to match, restore or change color on most vinyl surfaces, flexible and rigid plastics, carpet and velour. Fade resistant and flexible, COLOR COAT is not a dye, but a permanent paint coating. 12 oz. aerosol', 'paint'),
 ('https://s3.us-east-2.amazonaws.com/afi-website-product-images/Husky+Sander.jpg', 'Husky 6 in. Dual Action Sander', 45, 100, 'The new Husky air tool line is built to industrial standards for the professional user providing more power, less noise and longer life. This new Husky Dual Action Sander features a rubberized overmold for comfort. The large motor design provides ultimate stall resistance and the built in regulator allows you to match the tool speed to the job. Designed for surface preparation and final finish sanding of metals, plastics, composites, fillers and glass fiber used on autos and recreational vehicles. The dual action provides a smooth swirl free finish', 'tools'),
 ('https://s3.us-east-2.amazonaws.com/afi-website-product-images/3M+5301+Mask.JPG', '3M 5301 Half-Face Respirator', 25, 200, 'Organic Vapor – Used for petrochemicals, chemical manufacturing, construction', 'mask'),
-('https://s3.us-east-2.amazonaws.com/afi-website-product-images/3M+6000+Mask.JPG', '3M™ 6000 Series Half Mask, M', 15, 50, 'Item: Half Mask Respirator, Facepiece Material: Thermoplastic Elastomer, Configured For: Dual Cartridge', 'mask');
+('https://s3.us-east-2.amazonaws.com/afi-website-product-images/3M+6000+Mask.JPG', '3M 6000 Series Half Mask, M', 15, 50, 'Item: Half Mask Respirator, Facepiece Material: Thermoplastic Elastomer, Configured For: Dual Cartridge', 'mask'),
+('https://s3.us-east-2.amazonaws.com/afi-website-product-images/16oz-kit_2000x.jpg', 'TOPCOAT F11 POLISH & SEALER - WEB SPECIAL KITS', 60, 30, 'F11® Improves coating characteristics & performance vs. TopCoat® HPS, especially on dark colors, hides micro-scratches & swirl marks more effective, longer lasting, more durable, extremely hydrophobic (easier to use on glass), insane depth of image & shine, wickedly slick with improved easy-release and non-stick coating technology, designed to significantly reduce weathering, dirt & debris build-up on any surface, ECO Safe!', 'car care')
 
 INSERT INTO customer (email, customer_hash, customer_name, is_admin, company)
 values
@@ -81,6 +86,8 @@ values
 
 INSERT INTO orderLine (orderID, productID, quantity)
 values
+(1, 4, 6),
+(6, 5, 3),
 (1, 1, 5),
 (1, 3, 4),
 (2, 2, 5),
