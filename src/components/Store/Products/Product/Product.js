@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {connect} from 'react-redux';
+import Alert from 'react-s-alert';
 
 import Header from '../../../shared/Header/Header';
 import Footer from '../../../shared/Footer/Footer';
@@ -24,7 +25,15 @@ class Product extends Component {
         }
         axios.post('/api/store/product', id).then(res => {
             this.setState({ product: res.data });
-        }).catch(err => alert('unable to pull product data'));
+        }).catch(() => 
+                Alert.error('Unable to Pull Data', {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 2000,
+                offset: 100
+            }
+        ));
     };
 
     changeEvent = (e) => {
@@ -33,9 +42,23 @@ class Product extends Component {
     };
 
     addToCart = async (id) => {
-        if (this.props.user.email === null) return alert('Please login to shop online');
+        if (this.props.user.email === null) {
+            Alert.error('Please Login To Shop', {
+            position: 'top-right',
+            effect: 'genie',
+            beep: false,
+            timeout: 2000,
+            offset: 100
+            })
+        }
         if (this.state.quantity < 1) {
-            alert('Please add quantity');
+            Alert.error('Please add a Quantity', {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 2000,
+                offset: 100
+            });
         } else {
             let product = {
                 id: this.props.match.params.id,
@@ -45,6 +68,13 @@ class Product extends Component {
                 image: this.state.product.p_image
             };
             await this.props.addToCart(product);
+            Alert.success('Added To Cart', {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 2000,
+                offset: 100
+            });
             const {history} = this.props;
             history.push('/cart');
         };

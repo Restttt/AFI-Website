@@ -14,5 +14,20 @@ module.exports = {
         const db = req.app.get('db');
         const products = await db.getProductsAndDisplay();
         products ? res.status(200).send(products) : res.status(400).send(`couldn't get at this time`);
+    },
+    changeDisplay: async (req, res) => {
+        const db = req.app.get('db');
+        const {display, name} = req.body;
+        console.log(display);
+        await db.changeDisplay(display, name);
+        const products = await db.getProductsAndDisplay();
+        res.status(200).send(products);
+    },
+    addToDataBase: async (req, res) => {
+        const db = req.app.get('db');
+        const {image, name, category, price, inventory, description} = req.body;
+
+        await db.addProduct(image, name, category, price, inventory, description);
+        res.status(200).send('added to database');
     }
 }

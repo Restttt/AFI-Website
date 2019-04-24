@@ -5,6 +5,7 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "aws-sdk": "^2.441.0",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "chart.js": "^2.8.0",
@@ -23,16 +24,22 @@
     "react-chartjs": "^1.2.0",
     "react-chartjs-2": "^2.7.6",
     "react-dom": "^16.8.6",
+    "react-dropzone": "^10.1.4",
     "react-fontawesome": "^1.6.1",
+    "react-notification": "^6.8.4",
     "react-redux": "^7.0.1",
     "react-router-dom": "^5.0.0",
+    "react-s-alert": "^1.4.1",
     "react-scripts": "2.1.8",
     "react-select": "^2.4.3",
     "react-stripe-checkout": "^2.6.3",
+    "react-stripe-elements": "^3.0.0",
+    "react-toastify": "^5.1.0",
     "redux": "^4.0.1",
     "redux-promise-middleware": "^6.1.0",
     "redux-thunk": "^2.3.0",
-    "stripe": "^6.28.0"
+    "stripe": "^6.30.0",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

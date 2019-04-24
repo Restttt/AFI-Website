@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import Alert from 'react-s-alert';
+
 
 import './AdminDash.scss';
 import Header from '../Header/AdminHeader';
@@ -21,11 +24,23 @@ class Dashboard extends Component {
     getAllOrders() {
         axios.get('/admin/getOrders').then(res => {
             this.setState({ orders: res.data })
-        }).catch(() => alert('unable to pull all orders at this time'));
+        }).catch(() => 
+                Alert.error('Unable To Pull Orders', {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 2000,
+                offset: 100
+            }
+        ));
     };
     
     componentDidMount() {
         this.getAllOrders();
+
+        if (!this.props.user.admin) {
+            this.props.history.push('/');
+        };
     };
 
     filterSearch = () => {
@@ -90,4 +105,10 @@ class Dashboard extends Component {
     };
 };
 
-export default Dashboard;
+function mapStateToProps(reduxState) {
+    return {
+        user: reduxState.user
+    };
+};
+
+export default connect(mapStateToProps)(Dashboard);

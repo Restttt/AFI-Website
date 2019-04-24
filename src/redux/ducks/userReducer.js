@@ -1,11 +1,13 @@
 import axios from 'axios';
+import Alert from 'react-s-alert';
 
 const initialState = {
     email: null,
     name: null,
     company: null,
     admin: false,
-    message: null
+    message: null,
+    id: null
 };
 
 // ACTION TYPES //
@@ -74,25 +76,37 @@ export default function reducer(state = initialState, action) {
             return {...state}
         }
         case LOGIN + "_FULFILLED": {
-            return {...state, email: action.payload.email, name: action.payload.customer_name, admin: action.payload.is_admin, company: action.payload.company}
+            return {...state, email: action.payload.email, name: action.payload.customer_name, admin: action.payload.is_admin, company: action.payload.company, id: action.payload.customerid}
         }
         case LOGIN + "_REJECTED": {
-            alert(action.payload.response.data);
+            Alert.error(`${action.payload.response.data}`, {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 2000,
+                offset: 100
+            })
             return {...state, message: action.payload}
         }
         case REGISTER + "_PENDING": {
             return {...state}
         }
         case REGISTER + "_FULFILLED": {
-            return {...state, email: action.payload.email, name: action.payload.customer_name, admin: action.payload.is_admin, company: action.payload.company}
+            return {...state, email: action.payload.email, name: action.payload.customer_name, admin: action.payload.is_admin, company: action.payload.company, id: action.payload.customerid}
         }
         case REGISTER + "_REJECTED": {
-            alert(action.payload.response.data);
+            Alert.error(`${action.payload.response.data}`, {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 2000,
+                offset: 100
+            })
             return {...state, message: action.payload}
         }
         case GET_USER + "_FULFILLED": {
             if (action.payload.email && action.payload.email !== null) {
-                return {...state, email: action.payload.email, name: action.payload.customer_name, admin: action.payload.is_admin, company: action.payload.company}
+                return {...state, email: action.payload.email, name: action.payload.customer_name, admin: action.payload.is_admin, company: action.payload.company, id: action.payload.customerid}
             } else {
                 return {...state}
             }
@@ -113,7 +127,13 @@ export default function reducer(state = initialState, action) {
             }
         }
         case GET_ADDRESS + "_REJECTED": {
-            alert(action.payload.response.data)
+            Alert.error(`${action.payload.response.data}`, {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 2000,
+                offset: 100
+            })
             return {...state, message: action.payload.response.data}
         }
         case LOGOUT + "_FULFILLED": {

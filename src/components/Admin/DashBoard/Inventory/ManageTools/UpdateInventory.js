@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
 import axios from 'axios';
+import Alert from 'react-s-alert';
 
 class UpdateInventory extends Component {
     constructor(props) {
@@ -28,7 +29,13 @@ class UpdateInventory extends Component {
             inventory: this.state.inventory
         }
         axios.post('/admin/updateInventory', product).then(res => {
-            alert('successfully updated');
+            Alert.success('Updated Inventory', {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 2000,
+                offset: 100
+            });
         }).then(err => console.log('err'));
     };
 

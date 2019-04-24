@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { HashRouter, Link } from 'react-router-dom';
+import Alert from 'react-s-alert';
 
 // Components and style
 import Header from '../shared/Header/Header';
@@ -31,11 +32,24 @@ class Login extends Component {
             password: this.state.password
         };
         await this.props.loginUser(login)
-        if (this.props.userInfo.email) {
+        if (this.props.user.email) {
+            Alert.success(`Welcome ${this.props.user.name}`, {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 2000,
+                offset: 100
+            });
             const {history} = this.props
             history.push('/store');
         } 
     };
+
+    componentDidMount() {
+        if (this.props.user.email) {
+            this.props.history.push('/store');
+        };
+    }
 
     render() {
         return(
@@ -65,7 +79,7 @@ class Login extends Component {
 
 function mapStateToProps(reduxState) {
     return {
-        userInfo: reduxState.user
+        user: reduxState.user
     };
 };
 

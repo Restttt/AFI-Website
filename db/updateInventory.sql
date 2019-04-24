@@ -1,4 +1,3 @@
 update product
-set stock = $1
-where
-p_name = $2;
+set stock = stock - $1
+where productID = $2

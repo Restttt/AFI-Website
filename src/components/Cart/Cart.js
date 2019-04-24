@@ -2,29 +2,49 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {deleteFromCart, getCart} from '../../redux/ducks/shoppingReducer';
 import {Link} from 'react-router-dom';
+import {Elements, StripeProvider} from 'react-stripe-elements';
+import Alert from 'react-s-alert';
 
 import Header from '../shared/Header/Header';
+import Checkout from './Checkout/Checkout';
 import Footer from '../shared/Footer/Footer';
 import './Cart.scss';
 
-// const items = this.props.cart.map(item => {
-//     return(
-//         <Link to={`/products/${item.productid}`}  key={item.productid}>
-//             <h1>Hello</h1>
-//         </Link>
-//     )
-// })
 class Cart extends Component {
+
     deleteFromCart = async (index) => {
         let productIndex = {
             index
         }
         await this.props.deleteFromCart(productIndex)
-    }
+        Alert.success('Deleted From Cart', {
+            position: 'top-right',
+            effect: 'genie',
+            beep: false,
+            timeout: 2000,
+            offset: 100
+        });
+    };
+
     componentDidMount() {
         this.props.getCart();
-    }
+        if (this.props.user.email === null) {
+            this.props.history.push('/login');
+        };
+    };
+
     render() {
+        const checkout = () => {
+            return (
+                <StripeProvider apiKey="pk_test_0rEUHBKrklmJpoOT90pdovC7006h4Rcv3X">
+                    <div className="example">
+                    <Elements>
+                        <Checkout />
+                    </Elements>
+                    </div>
+                </StripeProvider>
+            )
+        }
         const items = () => {
             if (this.props.cart.cart.length) {
                 return this.props.cart.cart.map((product, index) => {
@@ -69,7 +89,7 @@ class Cart extends Component {
                             <h3 className="cart-total">Total: {getTotal()}</h3>
                             <div className="cart-buttons">
                                 <Link to="/store"><button>Continue Shopping</button></Link>
-                                <Link to="/checkout"><button>Checkout</button></Link>
+                                {checkout()}
                             </div>
                         </div>
                     ) : (
@@ -87,6 +107,7 @@ class Cart extends Component {
 
 function mapStateToRedux(reduxState) {
     return {
+        user: reduxState.user,
         cart: reduxState.cart
     };
 };

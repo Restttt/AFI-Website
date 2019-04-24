@@ -37,8 +37,8 @@ class GetInventory extends Component {
             }
         }
         return(
-            <div>
-                <input className="inventory-search" name="product" placeHolder="Search Product By Name" onChange={(e) => this.setState({ search: e.target.value})}/>
+            <div className="inventory-product-display">
+                <input className="inventory-search" name="product" placeholder="Search Product By Name" onChange={(e) => this.setState({ search: e.target.value})}/>
                 <span className="inventory-product-box check-inventory-title"><h3>Product Name</h3> <h3>Stock</h3></span>
                 {product()}
             </div>

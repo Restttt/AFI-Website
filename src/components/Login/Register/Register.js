@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {registerUser} from '../../../redux/ducks/userReducer';
 import {connect} from 'react-redux';
+import Alert from 'react-s-alert';
 
 import './Register.scss';
 import Header from '../../shared/Header/Header';
 import Footer from '../../shared/Footer/Footer';
+
 
 class Register extends Component {
     constructor(props) {
@@ -31,7 +33,13 @@ class Register extends Component {
 
     submitRegister = async () => {
         if (this.state.password1 !== this.state.password2) {
-            alert("passwords do not match");
+            Alert.error('Passwords do not match', {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 2000,
+                offset: 100
+            });
         } else {
             const registerInfo = {
                 email: this.state.email,
@@ -45,13 +53,18 @@ class Register extends Component {
                 zipcode: this.state.zipcode,
             };
             await this.props.registerUser(registerInfo);
-            console.log(this.props);
-            if (this.props.userInfo.email) {
+            if (this.props.user.email) {
                 const {history} = this.props
                 history.push('/');
             } 
         };
     };
+
+    componentDidMount() {
+        if (this.props.user.email) {
+            this.props.history.push('/store');
+        };
+    }
 
     render() {
         return(
@@ -88,7 +101,7 @@ class Register extends Component {
 
 function mapStateToRedux(reduxState) {
     return {
-        userInfo: reduxState.user
+        user: reduxState.user
     };
 };
 

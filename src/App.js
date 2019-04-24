@@ -12,6 +12,11 @@ import Product from './components/Store/Products/Product/Product';
 import Account from './components/Account/Account';
 import Dashboard from './components/Admin/DashBoard/AdminDash';
 
+// REACT-S-ALERT //
+import Alert from 'react-s-alert';
+
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/genie.css';
 
 // APP //
 class App extends Component {
@@ -29,6 +34,7 @@ class App extends Component {
           <Route path="/account" component={Account} />
           <Route path="/admin/dashboard" component={Dashboard} />
         </Switch>
+        <Alert stack={{limit: 3}} />
       </div>
       </HashRouter>
     );

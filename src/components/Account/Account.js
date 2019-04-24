@@ -16,6 +16,9 @@ class Account extends Component {
     }
     componentDidMount() {
         this.props.getAccount();
+        if (this.props.user.email === null) {
+            this.props.history.push('/login');
+        }
         setTimeout(() => {
             if (this.props.user.email && this.props.user.email !== null) {
                 let email = {
@@ -23,18 +26,17 @@ class Account extends Component {
                 }
                 this.props.getAddressAndAccount(email);
             }
-        }, 500)
-    }
+        }, 200)
+    };
 
     logoutUser = async () => {
         await this.props.logout();
         const {history} = this.props
         history.push('/');
         window.location.reload(); //THIS WILL DESTROY USER SESSION, PUSH THEM TO HOME PAGE, AND FORCE REFRESH TO UPDATE HEADER
-    }
+    };
 
     render() {
-        console.log(this.props.user);
         return( 
             <div>
                 <Header />
