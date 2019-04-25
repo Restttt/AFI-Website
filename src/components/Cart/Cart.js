@@ -29,6 +29,13 @@ class Cart extends Component {
     componentDidMount() {
         this.props.getCart();
         if (this.props.user.email === null) {
+            Alert.error('Please Login To Access Cart', {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 2000,
+                offset: 100
+            });
             this.props.history.push('/login');
         };
     };

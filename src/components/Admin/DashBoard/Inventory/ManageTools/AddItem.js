@@ -21,12 +21,6 @@ class AddItem extends Component {
 
     addToDataBase = () => {
         const {image, name, category, price, inventory, description} = this.state;
-        console.log(image);
-        console.log(name);
-        console.log(category);
-        console.log(price);
-        console.log(inventory);
-        console.log(description);
         if (!image || !name || !category || !price || !inventory || !description) {
             Alert.error(`Please check that all forms have been filled out`, {
                 position: 'top-right',
@@ -95,7 +89,6 @@ class AddItem extends Component {
     onChange = (e) => {
         const {name, value} = e.target;
         this.setState({ [name]: value });
-        console.log(name, value);
     };
 
     render() {

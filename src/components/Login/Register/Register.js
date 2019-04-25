@@ -62,6 +62,13 @@ class Register extends Component {
 
     componentDidMount() {
         if (this.props.user.email) {
+            Alert.error('You are already logged in', {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 2000,
+                offset: 100
+            });
             this.props.history.push('/store');
         };
     }

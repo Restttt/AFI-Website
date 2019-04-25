@@ -16,18 +16,16 @@ class Checkout extends React.Component {
     };
 
     emptyCart = async () => {
-        console.log("hit emptyCart");
         await this.props.emptyCart();
         const { history } = this.props;
         history.push('/');
     };
 
     addOrder = (cart) => {
-        console.log("hit addOrder")
         let order = {
             products: cart,
             userID: this.props.user.id,
-            total: this.getTotal() * 100
+            total: this.getTotal()
         }
         console.log(order);
         axios.put('/checkout/addOrder', order).then(() => {
@@ -63,7 +61,6 @@ class Checkout extends React.Component {
     
 
     render() {
-        console.log(this.props.cart, this.props.user);
         return (
             <StripeCheckout
             amount={this.getTotal() * 100}

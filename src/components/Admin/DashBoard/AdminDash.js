@@ -25,12 +25,12 @@ class Dashboard extends Component {
         axios.get('/admin/getOrders').then(res => {
             this.setState({ orders: res.data })
         }).catch(() => 
-                Alert.error('Unable To Pull Orders', {
-                position: 'top-right',
-                effect: 'genie',
-                beep: false,
-                timeout: 2000,
-                offset: 100
+            Alert.error('Unable To Pull Orders', {
+            position: 'top-right',
+            effect: 'genie',
+            beep: false,
+            timeout: 2000,
+            offset: 100
             }
         ));
     };
@@ -39,6 +39,13 @@ class Dashboard extends Component {
         this.getAllOrders();
 
         if (!this.props.user.admin) {
+            Alert.error('You do not have permission to access admin pages', {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 4000,
+                offset: 100
+            });
             this.props.history.push('/');
         };
     };

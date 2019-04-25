@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import Alert from 'react-s-alert';
 
 import Header from '../../../shared/Header/Header';
-import Footer from '../../../shared/Footer/Footer';
 import {addToCart} from '../../../../redux/ducks/shoppingReducer';
 import './Product.scss';
 
@@ -101,8 +100,6 @@ class Product extends Component {
                         <Link to="/store"><button className="back-button">Back</button></Link>
                     </div>
                 </div>
-    
-                <Footer />
             </div>
         );
     };

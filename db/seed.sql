@@ -21,7 +21,8 @@ CREATE TABLE orders (
     orderID serial UNIQUE  NOT NULL,
     customerID int,
     total int   NOT NULL,
-    phase VARCHAR(50) NOT NULL
+    phase VARCHAR(50) NOT NULL,
+    orderdate text
 );
 
 CREATE TABLE orderLine (

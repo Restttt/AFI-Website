@@ -20,7 +20,7 @@ const LOGOUT = "LOGOUT"
 
 // ACTION CREATORS //
 export function loginUser(loginInfo) {
-    let login = axios.post('/auth/login', loginInfo).then(res => {
+    let login = axios.post(`/auth/login`, loginInfo).then(res => {
         return res.data;
     });
     return {
@@ -30,7 +30,7 @@ export function loginUser(loginInfo) {
 };
 
 export function registerUser(registerInfo) {
-    let register = axios.post('/auth/register', registerInfo).then(res => {
+    let register = axios.post(`/auth/register`, registerInfo).then(res => {
         return res.data;
     });
     return {
@@ -40,7 +40,7 @@ export function registerUser(registerInfo) {
 };
 
 export function logout() {
-    let loggedOut = axios.delete('/auth/logout').then(res => {
+    let loggedOut = axios.delete(`/auth/logout`).then(res => {
         return reducer.data
     });
     return {
@@ -50,7 +50,7 @@ export function logout() {
 }
 
 export function getAccount() {
-    let user = axios.get('/auth/getAccount').then(res => {
+    let user = axios.get(`/auth/getAccount`).then(res => {
         return res.data
     });
     return {
@@ -60,7 +60,7 @@ export function getAccount() {
 }
 
 export function getAddressAndAccount(email) {
-    let user = axios.post('/auth/getCustomerAddress', email).then(res => {
+    let user = axios.post(`/auth/getCustomerAddress`, email).then(res => {
         return res.data
     });
     return {
@@ -79,6 +79,7 @@ export default function reducer(state = initialState, action) {
             return {...state, email: action.payload.email, name: action.payload.customer_name, admin: action.payload.is_admin, company: action.payload.company, id: action.payload.customerid}
         }
         case LOGIN + "_REJECTED": {
+            console.log(action.payload);
             Alert.error(`${action.payload.response.data}`, {
                 position: 'top-right',
                 effect: 'genie',

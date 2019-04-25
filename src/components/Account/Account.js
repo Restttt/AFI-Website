@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Alert from 'react-s-alert';
 
 import './Account.scss';
 import Header from '../shared/Header/Header';
@@ -17,6 +18,13 @@ class Account extends Component {
     componentDidMount() {
         this.props.getAccount();
         if (this.props.user.email === null) {
+            Alert.error('Please Login To Access Account', {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 2000,
+                offset: 100
+            });
             this.props.history.push('/login');
         }
         setTimeout(() => {

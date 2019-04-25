@@ -1,4 +1,5 @@
 require('dotenv').config();
+const moment = require('moment');
 const {STRIPE_SECRET} = process.env;
 const stripe = require("stripe")(STRIPE_SECRET);
 
@@ -6,9 +7,10 @@ module.exports = {
     submitPayment: async (req, res) => {
         const {id} = req.body.token;
         const {total} = req.body
+        total *= 100;
 
         const charge = await stripe.charges.create({
-            amount: total, // create a charge for 1700 cents USD ($17)
+            amount: total,
             currency: 'USD',
             description: 'AFI PAINT & SUPPLY',
             source: id,
@@ -33,7 +35,9 @@ module.exports = {
         const db = req.app.get('db');
         const {userID, total} = req.body;
         const {products} = req.body.products
-        const addedOrder = await db.addOrder(userID, total);
+        let date = new Date();
+        date = await moment(date).format("YYYY-MM-DD HH:mm:ss");
+        const addedOrder = await db.addOrder(userID, total, date);
         for (let i = 0; i < products.length; i++) {
             db.addOrderLine(addedOrder[0].orderid, +products[i].id, +products[i].quantity);
         };

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Alert from 'react-s-alert';
+import swal from 'sweetalert';
+
 
 class ChangeDisplay extends Component {
     constructor(props) {
@@ -13,8 +15,13 @@ class ChangeDisplay extends Component {
     };
 
     toggleDisplay = async (product, display) => {
-        let response = prompt(`Are you sure you want to change the display for ${product}?`);
-        if (response && response.toLowerCase() === 'yes') {
+        let answer = await swal({
+            text: `Type yes to confirm you want to change display for ${product}`,
+            content: "input",
+        }).then(res => {
+            return res
+        });
+        if (answer && answer.toLowerCase() === 'yes') {
             let item = {
                 name: product,
                 display: !display
@@ -39,12 +46,12 @@ class ChangeDisplay extends Component {
         axios.get('/admin/inventory/productDisplay').then(res => {
             this.setState({ products: res.data })
         }).catch(() => 
-                Alert.error('Unable To Pull The Data', {
-                position: 'top-right',
-                effect: 'genie',
-                beep: false,
-                timeout: 2000,
-                offset: 100
+            Alert.error('Unable To Pull The Data', {
+            position: 'top-right',
+            effect: 'genie',
+            beep: false,
+            timeout: 2000,
+            offset: 100
             }
         ));
     };

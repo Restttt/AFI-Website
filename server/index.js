@@ -3,10 +3,11 @@ const express = require('express');
 const session = require('express-session');
 const massive = require('massive');
 const app = express();
-const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING, STRIPE_SECRET, S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env;
-const stripe = require("stripe")(STRIPE_SECRET);
+const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
+
 
 // MIDDLEWARE APPLIED TO ALL //
+app.use( express.static( `${__dirname}/../build` ) );
 massive(CONNECTION_STRING).then(db => { // SET THE DB, STARTS THE SERVER
     app.set('db', db);
     app.listen(SERVER_PORT, () => console.log(`live at :${SERVER_PORT}`, 'and db is set'));
@@ -34,6 +35,7 @@ const checkoutCtrl = require('./controllers/checkoutController'); // CHECKOUT CO
 const chartCtrl = require('./controllers/chartController'); // CHART CONTROLLER
 const inventoryCtrl = require('./controllers/inventoryController'); // INVENTORY CONTROLLER
 const amazonCtrl = require('./controllers/amazonController'); // AMAZON CONTROLLER
+const emailCtrl = require('./controllers/emailController') //EMAIL CONTROLLER
 
 
 // LOGIN // 
@@ -60,6 +62,9 @@ app.post('/checkout/updateInventory', checkoutCtrl.updateInventory); // UPDATES 
 app.put('/checkout/addOrder', checkoutCtrl.addOrder); // ADDS THE ORDER TO THE DATA BASE
 // END CHECKOUT //
 
+// EMAILS
+app.post('/api/sendContact', emailCtrl.sendEmail); // SENDS EMAIL TO COMPANY THROUGH CONTACT FORM
+// END EMAILS
 
 // ADMIN //
 
@@ -79,7 +84,8 @@ app.get('/admin/chart/getProductNames', chartCtrl.getProductNames); //GETS ALL P
 
 // INVENTORY MANAGEMENT REQUEST //
 app.get('/admin/getInventory', inventoryCtrl.getInventory); // GETS PRODUCT NAMES AND STOCK //
-app.post('/admin/updateInventory', inventoryCtrl.updateInventory); // UPDATES INVENTORY BY NAME OF PRODUCT //
+app.post('/admin/updateInventory', inventoryCtrl.updateInventory); // SUBTRACTS INVENTORY BY ID OF PRODUCT AFTER PURCHASE //
+app.post('/admin/changeInventory', inventoryCtrl.changeInventory); // CHANGES INVENTORY OF ITEM BY PRODUCT NAME // 
 app.get('/admin/inventory/productDisplay', inventoryCtrl.getProductsAndDisplay); // GETS PRODUCTS AND CURRENT DISPLAY // 
 app.post('/admin/inventory/changeDisplay', inventoryCtrl.changeDisplay); // CHANGES ITEM DISPLAY IN STORE //
 app.put('/aws/getLink', amazonCtrl.getAWS); // GETS AWS LINK

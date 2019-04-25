@@ -18,15 +18,8 @@ module.exports = {
     },
     removeFromCart: async (req, res) => {
         const {index} = req.body;
-        console.log(index);
-        console.log(req.session.cart);
-        if (index > 0) {
-            req.session.cart.splice(index, 1); 
-            res.status(200).send(req.session.cart);
-        } else {
-            req.session.cart = [];
-            res.status(200).send(req.session.cart);
-        }
+        req.session.cart.splice(index, 1); 
+        res.status(200).send(req.session.cart);
     },
     getCart: (req, res) => {
         res.status(200).send(req.session.cart);

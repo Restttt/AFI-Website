@@ -84,6 +84,9 @@
 }
 
 @media(min-width: 1500px) {
+    .individual-parent {
+        height: 100vh;
+    }
     .individual-add-cart input {
         width: 80px;
     }

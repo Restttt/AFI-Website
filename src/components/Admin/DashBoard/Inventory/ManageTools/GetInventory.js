@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Alert from 'react-s-alert';
+import swal from 'sweetalert';
 
 class GetInventory extends Component {
     constructor() {
@@ -10,10 +12,22 @@ class GetInventory extends Component {
             search: ''
         }
     }
-    componentDidMount() {
+
+    getInventory = () => {
         axios.get('/admin/getInventory').then(res =>{
             this.setState({ products: res.data })
-        }).catch(err => console.log(err));
+        }).catch(() => {
+            Alert.error('Unable To Pull The Data', {
+            position: 'top-right',
+            effect: 'genie',
+            beep: false,
+            timeout: 2000,
+            offset: 100
+            }
+        )}
+    )};
+    componentDidMount() {
+        this.getInventory();
     };
 
     filterSearch = () => {
@@ -26,14 +40,35 @@ class GetInventory extends Component {
         }
     };
 
+    updateInventory = async (product) => {
+        let inventory = await swal({
+            text: `Please input the total ${product} you have in inventory`,
+            content: "input",
+        }).then(res => {
+            return res
+        });
+        axios.post('/admin/changeInventory', {product, inventory}).then(() => {
+            this.getInventory();
+            Alert.success(`Changed Inventory for ${product} to ${inventory}`, {
+                position: 'top-right',
+                effect: 'genie',
+                beep: false,
+                timeout: 5000,
+                offset: 100
+            });
+        }).then(err => console.log(err));
+    };
+
     render() {
         const product = () => {
             if (this.state.products.length) {
                 return this.filterSearch().map((product, index) => {
                     return(<div key={index} className="inventory-product-container">
-                        <span className="inventory-product-box"><h5>{product.name}</h5> <h5>{product.inventory}</h5></span>
+                        <span className="inventory-product-box"><h5>{product.name}</h5> <h5 onClick={() => this.updateInventory(product.name)}>{product.inventory}</h5></span>
                     </div>
                 )})
+            } else {
+                return null;
             }
         }
         return(
