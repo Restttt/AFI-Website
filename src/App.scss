@@ -32,3 +32,20 @@
   margin: 0;
   font-family: 'Work Sans', sans-serif;
 }
+
+.grow:hover {
+    -webkit-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    transform: scale(1.02);
+    z-index: -1;
+}
+
+.rotate:hover {
+    -webkit-transform: rotateZ(-20deg);
+    -ms-transform: rotateZ(-20deg);
+    transform: rotateX(-20deg);
+}
+
+.underline:hover {
+    transition: all ease-in-out .3s;
+}

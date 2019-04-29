@@ -5,7 +5,7 @@ import Footer from '../shared/Footer/Footer';
 import Products from './Products/Products';
 import './Store.scss';
 
-class Store extends Component {
+class Store extends Component {  
     render() {
         return(
             <div>

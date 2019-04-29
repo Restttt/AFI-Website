@@ -6,6 +6,7 @@ import Alert from 'react-s-alert';
 import './Register.scss';
 import Header from '../../shared/Header/Header';
 import Footer from '../../shared/Footer/Footer';
+import AddressForm from './Address';
 
 
 class Register extends Component {
@@ -101,6 +102,9 @@ class Register extends Component {
                         </div>
                     </div>
                 <Footer />
+                <div className="register-address-forms">
+                <AddressForm />
+                </div>
             </div>
         );
     };

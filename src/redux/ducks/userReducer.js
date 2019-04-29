@@ -113,7 +113,6 @@ export default function reducer(state = initialState, action) {
             }
         }
         case GET_ADDRESS + "_FULFILLED": {
-            console.log(action.payload);
             return {
                 ...state, 
                 email: action.payload.email, 

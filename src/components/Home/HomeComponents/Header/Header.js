@@ -17,11 +17,12 @@ class Header extends Component {
     };
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         this.props.getAccount();
         document.addEventListener('scroll', () => {
           const isTop = window.scrollY < 350;
           if (isTop !== this.state.isTop) {
-              this.setState({ isTop })
+            this.setState({ isTop })
           }
         });
       }
@@ -45,15 +46,15 @@ class Header extends Component {
     userManagementDesktop = () => {
         if (this.props.user.email === null) {
             return(
-                <Link className="link" to='/login'>LOGIN</Link>
+                <Link className="link rotate" to='/login'>LOGIN</Link>
             )
         } else if (!this.props.user.admin) {
             return(
-                <Link className="link" to='/account'>ACCOUNT</Link>
+                <Link className="link rotate" to='/account'>ACCOUNT</Link>
             )
         } else {
             return(
-                <Link className="link" to='/admin/dashboard'>PORTAL</Link>
+                <Link className="link rotate" to='/admin/dashboard'>PORTAL</Link>
             )
         }
     }
@@ -89,10 +90,10 @@ class Header extends Component {
                         </div>
 
                         <div className="list-items-min600">
-                            <Link className="link" to='/'><span>HOME</span></Link>
-                            <Link className="link" to='/store'><span>STORE</span></Link>
+                            <Link className="link rotate" to='/'><span>HOME</span></Link>
+                            <Link className="link rotate" to='/store'><span>STORE</span></Link>
                             {this.userManagementDesktop()}
-                            <Link className="link" to='/cart'><span>CART</span></Link>
+                            <Link className="link rotate" to='/cart'><span>CART</span></Link>
                         </div>
                     </nav>
                 </div>
@@ -100,7 +101,7 @@ class Header extends Component {
                 <div className="header-home-intro-parent">
                         <div className="header-home-welcome-parent">
                                 <h2 className="header-home-welcome">WELCOME TO AFI</h2>
-                                <Link className="link" to='/login'><h5 className="header-home-prompt">Click here to login</h5></Link>   
+                                <Link className="link" to='/login'><h5 className="header-home-prompt rotate">Click here to login</h5></Link>   
                         </div>
                 </div>
             </header>

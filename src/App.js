@@ -18,10 +18,25 @@ import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/genie.css';
 
+// MATERIAL //
+import {MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { blue, orange } from '@material-ui/core/colors';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+    secondary: orange
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
+
 // APP //
 class App extends Component {
   render() {
     return (
+      <MuiThemeProvider theme={theme}>
       <HashRouter>
       <div>
         <Switch>
@@ -37,6 +52,7 @@ class App extends Component {
         <Alert stack={{limit: 3}} />
       </div>
       </HashRouter>
+      </MuiThemeProvider>
     );
   }
 }
