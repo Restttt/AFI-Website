@@ -28,7 +28,7 @@ class Header extends Component {
       }
 
       userManagementTablet = () => {
-        if (this.props.user.email === null) {
+        if (this.props.user.id === null) {
             return(
                 <Link className="nav-bar-link link" to='/login'><h4>LOGIN</h4></Link>
             )
@@ -44,7 +44,7 @@ class Header extends Component {
     }
 
     userManagementDesktop = () => {
-        if (this.props.user.email === null) {
+        if (this.props.user.id === null) {
             return(
                 <Link className="link rotate" to='/login'>LOGIN</Link>
             )

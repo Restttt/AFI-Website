@@ -1,16 +1,14 @@
 ﻿CREATE TABLE customer (
     customerID SERIAL UNIQUE NOT NULL,
+    customer_name varchar(100) NOT NULL,
     email varchar(50) UNIQUE NOT NULL,
     customer_hash varchar(100) NOT NULL,
-    customer_name varchar(50) NOT NULL,
-    is_admin BOOLEAN,
-    company varchar(100)   NOT NULL
+    is_admin BOOLEAN
 );
 
 CREATE TABLE customer_address (
     addressID SERIAL UNIQUE NOT NULL,
     address1 varchar(100) NOT NULL,
-    address2 varchar(100) NOT NULL,
     city varchar(50) NOT NULL,
     state varchar(25) NOT NULL,
     zip int NOT NULL,
@@ -39,8 +37,8 @@ CREATE TABLE product (
     category varchar(150) NOT NULL,
     price int   NOT NULL,
     stock int   NOT NULL,
-    p_description varchar(1000) NOT NULL
-    display BOOLEAN,
+    p_description varchar(1000) NOT NULL,
+    display BOOLEAN
 );
 
 ALTER TABLE customer_address 
@@ -70,9 +68,9 @@ values
 ('https://s3.us-east-2.amazonaws.com/afi-website-product-images/3M+6000+Mask.JPG', '3M 6000 Series Half Mask, M', 15, 50, 'Item: Half Mask Respirator, Facepiece Material: Thermoplastic Elastomer, Configured For: Dual Cartridge', 'mask'),
 ('https://s3.us-east-2.amazonaws.com/afi-website-product-images/16oz-kit_2000x.jpg', 'TOPCOAT F11 POLISH & SEALER - WEB SPECIAL KITS', 60, 30, 'F11® Improves coating characteristics & performance vs. TopCoat® HPS, especially on dark colors, hides micro-scratches & swirl marks more effective, longer lasting, more durable, extremely hydrophobic (easier to use on glass), insane depth of image & shine, wickedly slick with improved easy-release and non-stick coating technology, designed to significantly reduce weathering, dirt & debris build-up on any surface, ECO Safe!', 'car care')
 
-INSERT INTO customer (email, customer_hash, customer_name, is_admin, company)
+INSERT INTO customer (email, customer_hash, customer_name, is_admin)
 values
-('ap@afipaintsupply.com', '$2a$10$BEH9hGTT50BMZMonYpUG7uEW2plpainVzTc.jCrMpNXp.nzku3vzG', 'AFI', true, 'AFI PAINT');
+('ap@afipaintsupply.com', '$2a$10$BEH9hGTT50BMZMonYpUG7uEW2plpainVzTc.jCrMpNXp.nzku3vzG', 'AFI PAINT & SUPPLY', true);
 -- ORIGINAL PASSWORD IS: 200W0817
 
 
@@ -87,16 +85,16 @@ values
 
 INSERT INTO orderLine (orderID, productID, quantity)
 values
-(1, 4, 6),
+(5, 4, 6),
 (6, 5, 3),
-(1, 1, 5),
-(1, 3, 4),
-(2, 2, 5),
-(3, 2, 6),
-(3, 3, 1),
-(4, 1, 1),
-(5, 3, 6),
-(5, 2, 8);
+(6, 1, 5),
+(6, 3, 4),
+(6, 2, 5),
+(7, 2, 6),
+(7, 3, 1),
+(8, 1, 1),
+(8, 3, 6),
+(8, 2, 8);
 
 
 

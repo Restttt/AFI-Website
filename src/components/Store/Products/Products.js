@@ -66,10 +66,11 @@ class Products extends Component {
     };
 };
 
-function mapProducsToState(reduxState) {
+function mapProductsToState(reduxState) {
     return {
-        store: reduxState.store
+        store: reduxState.store,
+        user: reduxState.user
     };
 };
 
-export default connect(mapProducsToState, {getAllProducts, getByCategory})(Products);
+export default connect(mapProductsToState, {getAllProducts, getByCategory})(Products);

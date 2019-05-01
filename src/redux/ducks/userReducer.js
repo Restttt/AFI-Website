@@ -4,18 +4,24 @@ import Alert from 'react-s-alert';
 const initialState = {
     email: null,
     name: null,
-    company: null,
     admin: false,
     message: null,
-    id: null
+    id: null,
+    password: null,
+    address: null,
+    city: null,
+    state: null,
+    zipCode: null,
 };
 
 // ACTION TYPES //
 const LOGIN = "LOGIN";
 const REGISTER = "REGISTER";
-const GET_USER = "GET_USER"
-const GET_ADDRESS = "GET_ADDRESS"
-const LOGOUT = "LOGOUT"
+const GET_USER = "GET_USER";
+const GET_ADDRESS = "GET_ADDRESS";
+const LOGOUT = "LOGOUT";
+const REGISTER_COMPANY = "REGISTER_COMPANY";
+const REGISTER_ADDRESS = "REGISTER_ADDRESS";
 
 
 // ACTION CREATORS //
@@ -28,6 +34,20 @@ export function loginUser(loginInfo) {
         payload: login
     };
 };
+
+export function registerCompany(obj) {
+    return {
+        type: REGISTER_COMPANY,
+        payload: obj
+    }
+}
+
+export function registerAddress(obj) {
+    return {
+        type: REGISTER_ADDRESS,
+        payload: obj
+    }
+}
 
 export function registerUser(registerInfo) {
     let register = axios.post(`/auth/register`, registerInfo).then(res => {
@@ -72,6 +92,19 @@ export function getAddressAndAccount(email) {
 // REDUCER //
 export default function reducer(state = initialState, action) {
     switch(action.type) {
+        case REGISTER_COMPANY: {
+            return {...state, 
+                    email: action.payload.email, 
+                    name: action.payload.name, 
+                    password: action.payload.password1};
+        }
+        case REGISTER_ADDRESS: {
+            return {...state,
+                    address: action.payload.address,
+                    city: action.payload.city, 
+                    state: action.payload.state,
+                    zipCode: action.payload.zipCode};
+        }
         case LOGIN + "_PENDING": {
             return {...state}
         }
@@ -90,7 +123,7 @@ export default function reducer(state = initialState, action) {
             return {...state, message: action.payload}
         }
         case REGISTER + "_PENDING": {
-            return {...state}
+            return {...state, password: null}
         }
         case REGISTER + "_FULFILLED": {
             return {...state, email: action.payload.email, name: action.payload.customer_name, admin: action.payload.is_admin, company: action.payload.company, id: action.payload.customerid}

@@ -1,47 +1,6 @@
-.register-container {
-    height: 92vh;
-    width: 100%;
-
+.register-parent-div {
+    min-height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background: var(--sprayCan);
-    background-size: cover;
-    background-position: center;
-}
-
-.register-parent-box {
-    margin: 0 auto;
-    height: 500px;
-    width: 300px;
-
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-
-    text-align: center;
-
-    background: var(--color1-opac);
-    border-radius: 15px;
-
-    color: white;
-}
-
-.register-inputs-parent input {
-    margin: 3px;
-    border: 1.5px solid var(--color3);
-}
-
-.register-parent-box button {
-    border-radius: 5px;
-    color: white;
-    border: 2px solid var(--color3);
-    background: var(--color1);
-}
-
-.register-address-forms {
-    width: 50%;
-    margin: 0 auto;
 }

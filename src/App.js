@@ -6,7 +6,7 @@ import './App.scss';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Cart from './components/Cart/Cart';
-import Store from './components/Store/Store';
+import Store from './components/Store/Store'
 import Register from './components/Login/Register/Register';
 import Product from './components/Store/Products/Product/Product';
 import Account from './components/Account/Account';

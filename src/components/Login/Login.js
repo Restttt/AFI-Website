@@ -3,7 +3,7 @@ import { HashRouter, Link } from 'react-router-dom';
 import Alert from 'react-s-alert';
 
 // Components and style
-import Header from '../shared/Header/Header';
+import NewHeader from '../shared/AppBar';
 import Footer from '../shared/Footer/Footer';
 import './Login.scss';
 
@@ -109,7 +109,7 @@ class Login extends Component {
         const {classes} = this.props;
         return(
             <HashRouter>
-            <Header />
+            <NewHeader history={this.props.history}/>
             <div className="login-page-div">
             <main className={classes.main}>
                 <CssBaseline />
@@ -118,7 +118,7 @@ class Login extends Component {
                     <LockOutlinedIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                    AFI LOGIN
+                    LOGIN
                     </Typography>
                     <form className={classes.form}>
                     <FormControl margin="normal" required fullWidth>
