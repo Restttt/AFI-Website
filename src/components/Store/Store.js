@@ -204,12 +204,12 @@ class Store extends React.Component {
             </IconButton>
           <Typography
               component="h1"
-              variant="h6"
+              variant="h5"
               color="inherit"
               noWrap
               className={classes.title}
             >
-              AFI PAINT & SUPPLY
+              <Link to="/" className={classes.loginButton}>AFI PAINT & SUPPLY</Link>
             </Typography>
             {loginButton()}
             {this.props.user.id && (

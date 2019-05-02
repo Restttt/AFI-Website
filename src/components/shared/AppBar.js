@@ -75,8 +75,9 @@ class NewHeader extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              AFI PAINT & SUPPLY
+            
+            <Typography variant="h5" color="inherit" className={classes.grow}>
+              <Link to="/" className={classes.loginButton}>AFI PAINT & SUPPLY</Link>
             </Typography>
             {loginButton()}
             {this.props.user.id && (
