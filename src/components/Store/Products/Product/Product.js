@@ -4,7 +4,7 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import Alert from 'react-s-alert';
 
-import Header from '../../../shared/Header/Header';
+import NewHeader from '../../../shared/AppBar';
 import {addToCart} from '../../../../redux/ducks/shoppingReducer';
 import './Product.scss';
 
@@ -82,7 +82,7 @@ class Product extends Component {
     render() {
         return(
             <div>
-                <Header />
+                <NewHeader />
                 <div className="individual-parent">
                     <div className="product-display-container">
                         <div className="individual-product-box">

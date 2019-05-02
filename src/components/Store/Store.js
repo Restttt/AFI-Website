@@ -170,7 +170,6 @@ class Store extends React.Component {
   }
 
   render() {
-    console.log(this.props.store);
     const { classes } = this.props;
     const { accountMenu } = this.state;
     const open = Boolean(accountMenu);
@@ -272,25 +271,25 @@ class Store extends React.Component {
           <List>
             <div>
                 <ListSubheader inset>Shop By Category</ListSubheader>
-                <ListItem button onClick={() => this.props.getByCategory('paint')}>
+                <ListItem button onClick={() => this.props.getByCategory({category: 'paint'})}>
                 <ListItemIcon>
                     <FormatPaint />
                 </ListItemIcon>
                 <ListItemText primary="Paint Products" />
                 </ListItem>
-                <ListItem button onClick={() => this.props.getByCategory('car care')}>
+                <ListItem button onClick={() => this.props.getByCategory({category: 'car care'})}>
                 <ListItemIcon>
                     <DirectionsCar />
                 </ListItemIcon>
                 <ListItemText primary="Car Products" />
                 </ListItem>
-                <ListItem button onClick={() => this.props.getByCategory('mask')}>
+                <ListItem button onClick={() => this.props.getByCategory({category: 'mask'})}>
                 <ListItemIcon>
                     <Face />
                 </ListItemIcon>
                 <ListItemText primary="Masks" />
                 </ListItem>
-                <ListItem button onClick={() => this.props.getByCategory('tools')}>
+                <ListItem button onClick={() => this.props.getByCategory({category: 'tools'})}>
                 <ListItemIcon>
                     <PanTool />
                 </ListItemIcon>

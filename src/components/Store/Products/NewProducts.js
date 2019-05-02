@@ -70,9 +70,9 @@ class Products extends Component {
 
   render() {
     const { classes } = this.props;
-    const products = this.props.products.map(product => {
+    const products = this.props.products.map((product, index) => {
       return(
-          <Grid item key={product} sm={7} md={5} lg={4}>
+          <Grid item key={index} sm={7} md={5} lg={4}>
                 <Card className={classes.card}>
                 <Link to={`/products/${product.productid}`}>
                   <CardMedia

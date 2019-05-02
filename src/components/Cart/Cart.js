@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import Alert from 'react-s-alert';
 
-import Header from '../shared/Header/Header';
+import NewHeader from '../shared/AppBar';
 import Checkout from './Checkout/Checkout';
 import Footer from '../shared/Footer/Footer';
 import './Cart.scss';
@@ -82,7 +82,7 @@ class Cart extends Component {
         }
         return(
             <div className="cart-entire-parent">
-                <Header />
+                <NewHeader />
                 <div className="cart-parent-container">
                     {this.props.cart.cart.length ? (
                         <div>
