@@ -1,6 +1,5 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import promise from 'redux-promise-middleware';
-import thunk from 'redux-thunk'
 
 // REDUCERS // 
 import userReducer from './ducks/userReducer';
@@ -18,5 +17,5 @@ const rootReducer = combineReducers({
 })
 
 // STORE // 
-const middleware = applyMiddleware(promise, thunk);
+const middleware = applyMiddleware(promise);
 export default createStore(rootReducer, middleware);
